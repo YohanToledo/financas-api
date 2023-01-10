@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
+import { CategoryModule } from './components/category/category.module';
 import { UsersModule } from './components/users/users.module';
 
 @Module({
@@ -17,12 +18,13 @@ import { UsersModule } from './components/users/users.module';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      synchronize: false,
-      dropSchema: false,
+      synchronize: true,
+      dropSchema: true,
       entities: [join(__dirname, '**', '*.entity.{ts,js}')],
     } as TypeOrmModuleOptions),
     AuthModule,
     UsersModule,
+    CategoryModule,
   ],
   controllers: [],
   providers: [],

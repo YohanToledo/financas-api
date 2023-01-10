@@ -4,11 +4,13 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { hashSync } from 'bcrypt';
 import { Exclude } from 'class-transformer';
+import { CategoryEntity } from 'src/components/category/entities/category.entity';
 
 @Entity({ name: 'users' })
 export class UsersEntity {
@@ -39,4 +41,7 @@ export class UsersEntity {
   encryptPassword() {
     this.password = hashSync(this.password, 10);
   }
+
+  //@OneToMany(() => CategoryEntity, (category) => category.id)
+  //category: CategoryEntity[];
 }
