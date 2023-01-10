@@ -1,4 +1,13 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { TYPE } from 'src/components/category/enum/category-type.enum';
+
+/**
+ * @AUTH
+ */
+class JwtExampleRes {
+  @ApiProperty()
+  token: string;
+}
 
 class LoginExampleReq {
   @ApiProperty({ default: 'name@example.com' })
@@ -7,6 +16,9 @@ class LoginExampleReq {
   password: string;
 }
 
+/**
+ * @USERS
+ */
 class CreateUserExampleReq {
   @ApiProperty({ default: 'David Owen' })
   fullName: string;
@@ -33,11 +45,6 @@ class UpdateUserExampleReq {
     default: 'name@example.com',
   })
   email: string;
-}
-
-class JwtExampleRes {
-  @ApiProperty()
-  token: string;
 }
 
 class UserCreatedRes {
@@ -72,6 +79,16 @@ class UpdatePasswordReq {
   token: string;
 }
 
+/**
+ * @CATEGORIES
+ */
+class CategoryExample {
+  @ApiProperty({ default: 'Salario' })
+  description: string;
+  @ApiProperty({ enum: ['INCOME', 'EXPENSE'] })
+  type: TYPE;
+}
+
 export const ResponseAndReturnTypes = {
   LoginExampleReq,
   JwtExampleRes,
@@ -80,4 +97,5 @@ export const ResponseAndReturnTypes = {
   UserCreatedRes,
   FindUserRes,
   UpdatePasswordReq,
+  CategoryExample,
 };

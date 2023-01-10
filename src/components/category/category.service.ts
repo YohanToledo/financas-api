@@ -51,11 +51,10 @@ export class CategoryService {
     };
   }
 
-  /*
   async update(id: number, data) {
-    const user = await this.findOneOrFail({ where: { id: id } });
-    this.usersRepository.merge(user, data);
-    const success = await this.usersRepository.save(user);
+    const category = await this.findOneOrFail({ where: { id: id } });
+    this.categoryRepository.merge(category, data);
+    const success = await this.categoryRepository.save(category);
     if (success) {
       return { message: 'Updated Successfully' };
     }
@@ -63,7 +62,6 @@ export class CategoryService {
 
   async delete(id: number) {
     await this.findOneOrFail({ where: { id: id } });
-    this.usersRepository.softDelete({ id });
+    this.categoryRepository.softDelete({ id });
   }
-  */
 }
