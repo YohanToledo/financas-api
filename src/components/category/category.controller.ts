@@ -19,7 +19,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { DecodedToken } from 'src/decorators/decoded-jwt.decorator';
-import { IDecodedToken, IJwt } from 'src/decorators/interface.decoded';
+import { IDecodedToken } from 'src/decorators/interface.decoded';
 import { ResponseAndReturnTypes } from 'src/helper/swagger.helper';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';

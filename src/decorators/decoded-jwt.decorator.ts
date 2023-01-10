@@ -6,7 +6,7 @@ export const DecodedToken = createParamDecorator(
   (_, ctx: ExecutionContext): IDecodedToken => {
     const req = ctx.switchToHttp().getRequest();
 
-    const [__, token] = req.headers.authorization.split(' ');
+    const [, token] = req.headers.authorization.split(' ');
 
     const decoded = jwt.decode(token) as IJwt;
 
