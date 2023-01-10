@@ -20,7 +20,7 @@ export class CategoryService {
   async findAllByUser(userId: number) {
     const categories = await this.categoryRepository.find({
       where: { userId },
-      select: { id: true, description: true, type: true },
+      select: { id: true, description: true, type: true, icon: true },
     });
 
     return categories;
@@ -39,8 +39,7 @@ export class CategoryService {
     category.userId = userId;
     const createdCategory = await this.categoryRepository
       .save(category)
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         throw new BadRequestException('Error to create category');
       });
 
@@ -48,6 +47,7 @@ export class CategoryService {
       id: createdCategory.id,
       description: createdCategory.description,
       type: createdCategory.type,
+      icon: createdCategory.icon,
     };
   }
 

@@ -87,6 +87,8 @@ class CategoryExample {
   description: string;
   @ApiProperty({ enum: ['INCOME', 'EXPENSE'] })
   type: TYPE;
+  @ApiPropertyOptional()
+  icon: string;
 }
 
 export const ResponseAndReturnTypes = {

@@ -27,6 +27,9 @@ export class CategoryEntity {
   })
   type: TYPE;
 
+  @Column({ name: 'icon', default: null })
+  icon: string;
+
   @ManyToOne(() => UsersEntity)
   @JoinColumn({ name: 'user_id' })
   userId: number;
