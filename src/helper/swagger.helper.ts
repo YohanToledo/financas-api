@@ -91,6 +91,32 @@ class CategoryExample {
   icon: string;
 }
 
+/**
+ * @BANK
+ */
+
+class BankExample {
+  @ApiProperty({ default: 'Santander' })
+  name: string;
+}
+
+/**
+ * @ACCOUNT
+ */
+class Account {
+  @ApiProperty({ default: 'Meus investimentos' })
+  description: string;
+
+  @ApiProperty({ default: 'Detalhes sobre a conta' })
+  observation: string;
+
+  @ApiProperty({ default: '#0307fc' })
+  color: string;
+
+  @ApiProperty({ default: 1 })
+  bank: number;
+}
+
 export const ResponseAndReturnTypes = {
   LoginExampleReq,
   JwtExampleRes,
@@ -100,4 +126,6 @@ export const ResponseAndReturnTypes = {
   FindUserRes,
   UpdatePasswordReq,
   CategoryExample,
+  BankExample,
+  Account,
 };

@@ -17,7 +17,7 @@ export class CategoryService {
 
   async findAllByUser(userId: number) {
     const categories = await this.categoryRepository.find({
-      where: { userId },
+      where: { user: userId },
       select: { id: true, description: true, type: true, icon: true },
     });
 
@@ -34,7 +34,7 @@ export class CategoryService {
 
   async save(data: CreateCategoryDto, userId: number) {
     const category = this.categoryRepository.create(data);
-    category.userId = userId;
+    category.user = userId;
     const createdCategory = await this.categoryRepository
       .save(category)
       .catch(() => {

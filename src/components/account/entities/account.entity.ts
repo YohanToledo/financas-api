@@ -1,4 +1,5 @@
 import { Exclude } from 'class-transformer';
+import { BankEntity } from 'src/components/bank/entities/bank.entity';
 import { UsersEntity } from 'src/components/users/entities/users.entity';
 import {
   Column,
@@ -10,29 +11,30 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { TYPE } from '../enum/category-type.enum';
 
-@Entity({ name: 'categories' })
-export class CategoryEntity {
+@Entity({ name: 'accounts' })
+export class AccountEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
-
-  @Column({ name: 'description' })
+  @Column()
   description: string;
 
-  @Column({
-    name: 'type',
-    type: 'enum',
-    enum: { INCOME: 'INCOME', EXPENSE: 'EXPENSE' },
-  })
-  type: TYPE;
+  @Column()
+  observation: string;
 
-  @Column({ name: 'icon', default: null })
-  icon: string;
+  @Column({ default: 0 })
+  balance: number;
+
+  @Column()
+  color: string;
 
   @ManyToOne(() => UsersEntity)
   @JoinColumn({ name: 'user_id' })
   user: number;
+
+  @ManyToOne(() => BankEntity)
+  @JoinColumn({ name: 'bank_id' })
+  bank: number;
 
   @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
   @Exclude()

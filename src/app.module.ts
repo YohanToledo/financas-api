@@ -3,6 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
+import { AccountModule } from './components/account/account.module';
+import { BankModule } from './components/bank/bank.module';
 import { CategoryModule } from './components/category/category.module';
 import { UsersModule } from './components/users/users.module';
 
@@ -25,6 +27,8 @@ import { UsersModule } from './components/users/users.module';
     AuthModule,
     UsersModule,
     CategoryModule,
+    BankModule,
+    AccountModule,
   ],
   controllers: [],
   providers: [],
