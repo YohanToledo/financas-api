@@ -110,6 +110,9 @@ class Account {
   @ApiProperty({ default: 'Detalhes sobre a conta' })
   observation: string;
 
+  @ApiProperty({ default: 0 })
+  balance: number;
+
   @ApiProperty({ default: '#0307fc' })
   color: string;
 

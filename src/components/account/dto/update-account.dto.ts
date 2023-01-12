@@ -16,6 +16,9 @@ export class UpdateAccountDto {
   @IsOptional()
   observation: string;
 
+  @IsOptional()
+  balance: number;
+
   @IsNotEmpty()
   @IsString()
   @Matches(RegExHelper.hexColor, {
