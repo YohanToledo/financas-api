@@ -43,8 +43,11 @@ export class AccountController {
   @ApiOperation({ summary: 'Create Account' })
   @ApiBody({ type: ResponseAndReturnTypes.Account })
   @ApiBearerAuth('JWT')
-  async save(@Body() data: CreateAccountDto) {
-    return this.accountService.save(data);
+  async save(
+    @DecodedToken() decodedToken: IDecodedToken,
+    @Body() data: CreateAccountDto,
+  ) {
+    return this.accountService.save(data, decodedToken.sub);
   }
 
   @Put(':id')

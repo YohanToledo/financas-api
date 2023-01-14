@@ -33,8 +33,9 @@ export class AccountService {
     }
   }
 
-  async save(data: CreateAccountDto) {
+  async save(data: CreateAccountDto, userId: number) {
     const account = this.accountRepository.create(data);
+    account.user = userId;
     const createdAccount = await this.accountRepository
       .save(account)
       .catch((err) => {
