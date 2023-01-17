@@ -1,6 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { TYPE } from 'src/components/category/enum/category-type.enum';
-import { STATUS } from 'src/components/expenses/enum/expenses-status.enum';
+import { EXPENSE_STATUS } from 'src/components/expenses/enum/expenses-status.enum';
+import { INCOME_STATUS } from 'src/components/incomes/enum/incomes-status.enum';
 
 /**
  * @AUTH
@@ -129,10 +130,28 @@ export class ExpensesDto {
   value: number;
   @ApiProperty({ default: 'Compras supermercado' })
   description: string;
-  @ApiProperty({ default: new Date().toJSON().split('T') })
+  @ApiProperty({ default: new Date() })
   transactionDate: string;
   @ApiProperty({ enum: ['PAID', 'PENDING'] })
-  status: STATUS;
+  status: EXPENSE_STATUS;
+  @ApiProperty({ default: 1 })
+  account: number;
+  @ApiProperty({ default: 1 })
+  category: number;
+}
+
+/**
+ * @INCOMES
+ */
+export class IncomesDto {
+  @ApiProperty({ default: 350 })
+  value: number;
+  @ApiProperty({ default: 'trampo freela' })
+  description: string;
+  @ApiProperty({ default: new Date() })
+  transactionDate: Date;
+  @ApiProperty({ enum: ['RECEIVED', 'PENDING'] })
+  status: INCOME_STATUS;
   @ApiProperty({ default: 1 })
   account: number;
   @ApiProperty({ default: 1 })
@@ -151,4 +170,5 @@ export const ResponseAndReturnTypes = {
   BankExample,
   Account,
   ExpensesDto,
+  IncomesDto,
 };

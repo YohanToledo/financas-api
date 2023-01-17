@@ -1,4 +1,4 @@
-export enum STATUS {
+export enum EXPENSE_STATUS {
   PAID,
   PENDING,
 }

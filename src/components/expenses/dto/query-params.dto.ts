@@ -2,10 +2,10 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsOptional } from 'class-validator';
 
 export class Params {
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ default: new Date() })
   @IsOptional()
   startDate: Date;
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ default: new Date() })
   @IsOptional()
   endDate: Date;
 }

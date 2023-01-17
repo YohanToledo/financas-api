@@ -10,7 +10,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { STATUS } from '../enum/expenses-status.enum';
+import { EXPENSE_STATUS } from '../enum/expenses-status.enum';
 
 @Entity({ name: 'expenses' })
 export class ExpensesEntity {
@@ -31,7 +31,7 @@ export class ExpensesEntity {
     type: 'enum',
     enum: { PAID: 'PAID', PENDING: 'PENDING' },
   })
-  status: STATUS;
+  status: EXPENSE_STATUS;
 
   @ManyToOne(() => UsersEntity)
   @JoinColumn({ name: 'user_id' })

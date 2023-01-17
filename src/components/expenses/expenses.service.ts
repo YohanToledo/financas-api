@@ -9,6 +9,7 @@ import { CreateExpenseDto } from './dto/create-expense.dto';
 import { ExpensesEntity } from './entities/expenses.entity';
 import { Params } from './dto/query-params.dto';
 import { AccountService } from '../account/account.service';
+import { EXPENSE_STATUS } from './enum/expenses-status.enum';
 
 @Injectable()
 export class ExpensesService {
@@ -53,7 +54,9 @@ export class ExpensesService {
         throw new BadRequestException('Error to create expense');
       });
 
-    await this.accountService.updateBalance(expense.account, -expense.value);
+    if (data.status === EXPENSE_STATUS.PAID) {
+      await this.accountService.updateBalance(expense.account, -expense.value);
+    }
 
     return {
       ...createdExpense,
@@ -62,10 +65,21 @@ export class ExpensesService {
 
   async update(id: number, data: CreateExpenseDto) {
     const expense = await this.findOneOrFail({ where: { id: id } });
+
+    const updatedStatus = {
+      PAID: -expense.value,
+      PENDING: expense.value,
+    };
+
+    if (data.status !== expense.status) {
+      await this.accountService.updateBalance(
+        expense.account,
+        updatedStatus[data.status.toString()],
+      );
+    }
+
     this.expensesRepository.merge(expense, data);
     const success = await this.expensesRepository.save(expense);
-
-    await this.accountService.updateBalance(expense.account, -expense.value);
     if (success) {
       return { message: 'Updated Successfully' };
     }

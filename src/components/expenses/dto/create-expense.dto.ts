@@ -5,7 +5,7 @@ import {
   IsNumber,
   IsString,
 } from 'class-validator';
-import { STATUS } from '../enum/expenses-status.enum';
+import { EXPENSE_STATUS } from '../enum/expenses-status.enum';
 
 export class CreateExpenseDto {
   @IsNotEmpty()
@@ -22,8 +22,8 @@ export class CreateExpenseDto {
 
   @IsNotEmpty()
   @IsString()
-  @IsEnum(STATUS)
-  status: STATUS;
+  @IsEnum(EXPENSE_STATUS)
+  status: EXPENSE_STATUS;
 
   @IsNotEmpty()
   @IsNumber()
