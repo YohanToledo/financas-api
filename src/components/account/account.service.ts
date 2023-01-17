@@ -57,6 +57,12 @@ export class AccountService {
     }
   }
 
+  async updateBalance(id: number, value: number) {
+    const account = await this.findOneOrFail({ where: { id: id } });
+    account.balance = Number(account.balance) + Number(value);
+    await this.accountRepository.save(account);
+  }
+
   async delete(id: number) {
     await this.findOneOrFail({ where: { id: id } });
     this.accountRepository.softDelete({ id });

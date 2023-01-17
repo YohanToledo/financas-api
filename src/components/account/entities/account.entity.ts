@@ -22,10 +22,10 @@ export class AccountEntity {
   @Column()
   observation: string;
 
-  @Column({ default: 0 })
+  @Column({ default: 0, type: 'decimal', precision: 10, scale: 2 })
   balance: number;
 
-  @Column()
+  @Column({ name: 'color', length: 15 })
   color: string;
 
   @ManyToOne(() => UsersEntity)

@@ -17,7 +17,7 @@ export class ExpensesEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column()
+  @Column({ name: 'value', type: 'decimal', precision: 10, scale: 2 })
   value: number;
 
   @Column()

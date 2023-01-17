@@ -8,12 +8,14 @@ import { Between, FindOneOptions, Repository } from 'typeorm';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { ExpensesEntity } from './entities/expenses.entity';
 import { Params } from './dto/query-params.dto';
+import { AccountService } from '../account/account.service';
 
 @Injectable()
 export class ExpensesService {
   constructor(
     @InjectRepository(ExpensesEntity)
     private readonly expensesRepository: Repository<ExpensesEntity>,
+    private readonly accountService: AccountService,
   ) {}
 
   async findAllByUser(userId: number, params: Params) {
@@ -51,15 +53,19 @@ export class ExpensesService {
         throw new BadRequestException('Error to create expense');
       });
 
+    await this.accountService.updateBalance(expense.account, -expense.value);
+
     return {
       ...createdExpense,
     };
   }
 
   async update(id: number, data: CreateExpenseDto) {
-    const account = await this.findOneOrFail({ where: { id: id } });
-    this.expensesRepository.merge(account, data);
-    const success = await this.expensesRepository.save(account);
+    const expense = await this.findOneOrFail({ where: { id: id } });
+    this.expensesRepository.merge(expense, data);
+    const success = await this.expensesRepository.save(expense);
+
+    await this.accountService.updateBalance(expense.account, -expense.value);
     if (success) {
       return { message: 'Updated Successfully' };
     }
