@@ -7,6 +7,7 @@ import { AccountModule } from './components/account/account.module';
 import { BankModule } from './components/bank/bank.module';
 import { CategoryModule } from './components/category/category.module';
 import { ExpensesModule } from './components/expenses/expenses.module';
+import { IncomesModule } from './components/incomes/incomes.module';
 import { UsersModule } from './components/users/users.module';
 
 @Module({
@@ -22,7 +23,7 @@ import { UsersModule } from './components/users/users.module';
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       synchronize: true,
-      dropSchema: true,
+      dropSchema: false,
       entities: [join(__dirname, '**', '*.entity.{ts,js}')],
     } as TypeOrmModuleOptions),
     AuthModule,
@@ -31,6 +32,7 @@ import { UsersModule } from './components/users/users.module';
     BankModule,
     AccountModule,
     ExpensesModule,
+    IncomesModule,
   ],
   controllers: [],
   providers: [],
