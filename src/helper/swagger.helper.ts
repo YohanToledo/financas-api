@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { TYPE } from 'src/components/category/enum/category-type.enum';
+import { STATUS } from 'src/components/expenses/enum/expenses-status.enum';
 
 /**
  * @AUTH
@@ -120,6 +121,24 @@ class Account {
   bank: number;
 }
 
+/**
+ * @EXPENSES
+ */
+export class ExpensesDto {
+  @ApiProperty({ default: 50 })
+  value: number;
+  @ApiProperty({ default: 'Compras supermercado' })
+  description: string;
+  @ApiProperty({ default: new Date().toJSON().split('T') })
+  transactionDate: string;
+  @ApiProperty({ enum: ['PAID', 'PENDING'] })
+  status: STATUS;
+  @ApiProperty({ default: 1 })
+  account: number;
+  @ApiProperty({ default: 1 })
+  category: number;
+}
+
 export const ResponseAndReturnTypes = {
   LoginExampleReq,
   JwtExampleRes,
@@ -131,4 +150,5 @@ export const ResponseAndReturnTypes = {
   CategoryExample,
   BankExample,
   Account,
+  ExpensesDto,
 };

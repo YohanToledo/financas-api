@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { AccountModule } from './components/account/account.module';
 import { BankModule } from './components/bank/bank.module';
 import { CategoryModule } from './components/category/category.module';
+import { ExpensesModule } from './components/expenses/expenses.module';
 import { UsersModule } from './components/users/users.module';
 
 @Module({
@@ -29,6 +30,7 @@ import { UsersModule } from './components/users/users.module';
     CategoryModule,
     BankModule,
     AccountModule,
+    ExpensesModule,
   ],
   controllers: [],
   providers: [],
