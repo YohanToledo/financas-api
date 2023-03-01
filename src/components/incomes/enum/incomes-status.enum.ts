@@ -1,4 +1,4 @@
 export enum INCOME_STATUS {
-  RECEIVED,
-  PENDING,
+  RECEIVED = 'RECEIVED',
+  PENDING = 'PENDING',
 }
