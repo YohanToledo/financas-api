@@ -18,7 +18,7 @@ console.log(`Starting server in ${ENV} environment`);
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: !ENV ? '.env.dev' : `.env.${ENV}`,
+      //envFilePath: !ENV ? '.env.dev' : `.env.${ENV}`,
     }),
     TypeOrmModule.forRoot({
       type: process.env.DATABASE_TYPE,
